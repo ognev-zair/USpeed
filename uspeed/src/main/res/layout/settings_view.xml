@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/fon" android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_horizontal" android:layout_gravity="center_horizontal"
+                  android:orientation="vertical" android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" android:layout_marginTop="30.0dip">
+        <FrameLayout android:orientation="horizontal" android:id="@id/changeFacebookAccount"
+                     android:background="@drawable/reports_item_selector" android:layout_width="fill_parent"
+                     android:layout_height="40.0dip" android:layout_margin="16.0dip">
+            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:layout_margin="6.0dip">
+                <TextView android:textColor="@color/black" android:layout_gravity="center_vertical"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_marginLeft="6.0dip" android:text="@string/ChangeAnAccount"/>
+                <com.facebook.widget.LoginButton android:id="@id/settingsFacebookBtn" android:layout_width="0.0dip"
+                                                 android:layout_height="0.0dip"/>
+                <ImageView android:textColor="@color/ucellColor" android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" android:layout_marginLeft="30.0dip"
+                           android:src="@drawable/blue_facebook_logo" android:text="10 раз"/>
+            </LinearLayout>
+            <ImageView android:layout_gravity="right|center" android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" android:layout_margin="10.0dip"
+                       android:src="@drawable/arrow_right"/>
+        </FrameLayout>
+        <FrameLayout android:orientation="horizontal" android:id="@id/changePhoneNumber"
+                     android:background="@drawable/reports_item_selector" android:layout_width="fill_parent"
+                     android:layout_height="40.0dip" android:layout_marginLeft="16.0dip"
+                     android:layout_marginRight="16.0dip">
+            <TextView android:textColor="@color/black" android:layout_gravity="center_vertical"
+                      android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_marginLeft="10.0dip" android:text="@string/ChangePhoneNumber"/>
+            <ImageView android:layout_gravity="right|center" android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" android:layout_margin="10.0dip"
+                       android:src="@drawable/arrow_right"/>
+        </FrameLayout>
+        <FrameLayout android:orientation="horizontal" android:id="@id/changeLanguage"
+                     android:background="@drawable/reports_item_selector" android:layout_width="fill_parent"
+                     android:layout_height="40.0dip" android:layout_marginLeft="16.0dip"
+                     android:layout_marginTop="16.0dip" android:layout_marginRight="16.0dip">
+            <TextView android:textColor="@color/black" android:layout_gravity="center_vertical"
+                      android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_marginLeft="10.0dip" android:text="@string/ChangeSystemLanguage"/>
+            <ImageView android:layout_gravity="right|center" android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" android:layout_margin="10.0dip"
+                       android:src="@drawable/arrow_right"/>
+        </FrameLayout>
+        <FrameLayout android:orientation="horizontal" android:id="@id/clearCache"
+                     android:background="@drawable/reports_item_selector" android:layout_width="fill_parent"
+                     android:layout_height="40.0dip" android:layout_margin="16.0dip">
+            <TextView android:textColor="@color/black" android:layout_gravity="center_vertical"
+                      android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_marginLeft="10.0dip" android:text="@string/ClearCache"/>
+            <ImageView android:layout_gravity="right|center" android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" android:layout_margin="10.0dip"
+                       android:src="@drawable/arrow_right"/>
+        </FrameLayout>
+        <FrameLayout android:orientation="horizontal" android:id="@id/aboutApp"
+                     android:background="@drawable/reports_item_selector" android:layout_width="fill_parent"
+                     android:layout_height="40.0dip" android:layout_margin="16.0dip">
+            <TextView android:textColor="@color/black" android:layout_gravity="center_vertical"
+                      android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_marginLeft="10.0dip" android:text="@string/aboutApp"/>
+            <ImageView android:layout_gravity="right|center" android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" android:layout_margin="10.0dip"
+                       android:src="@drawable/arrow_right"/>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

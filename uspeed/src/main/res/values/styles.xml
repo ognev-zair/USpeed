@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="fragment_text" parent="android:TextAppearance.DeviceDefault"></style>
+    <style name="MenuDrawer.Widget.Title"/>
+    <style name="MenuDrawer.Widget.Category"></style>
+    <style name="MenuDrawer.Widget">k</style>
+    <style name="MenuDrawer">,</style>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <padding android:left="24.0dip" android:right="24.0dip" />
+            <solid android:color="@*android:color/transparent" />
+        </shape>
+    </item>
+    <item>
+        <bitmap android:gravity="center" android:src="@drawable/menu_active" android:antialias="true" />
+    </item>
+</layer-list>

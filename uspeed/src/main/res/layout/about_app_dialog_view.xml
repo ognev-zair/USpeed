@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:orientation="vertical" android:background="@drawable/dialog_background" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="top|right|center" android:id="@id/closeDialog" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/close" />
+    <LinearLayout android:gravity="left" android:layout_gravity="left" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="35.0dip">
+        <TextView android:textSize="18.0dip" android:textStyle="bold" android:textColor="@color/darkBlue" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/aboutApp" android:maxLines="2" android:lines="2" />
+        <View android:background="@color/darkGrey" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginTop="4.0dip" />
+        <TextView android:textColor="@color/darkBlue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="@string/aboutMeDescription" />
+    </LinearLayout>
+    <Button android:textStyle="bold" android:textColor="@color/white" android:layout_gravity="bottom|center" android:id="@id/okBtn" android:background="@drawable/button_selector" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="12.0dip" android:layout_marginBottom="35.0dip" android:text="@string/ok" />
+</FrameLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:orientation="vertical" android:background="@drawable/dialog_background" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="top|right|center" android:id="@id/closeDialog" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/close" />
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="25.0dip">
+        <TextView android:textSize="18.0dip" android:textStyle="bold" android:textColor="@color/darkBlue" android:gravity="center_horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/ChangeSystemLanguage" />
+        <View android:background="@color/darkGrey" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginTop="4.0dip" />
+        <LinearLayout android:gravity="left" android:layout_gravity="left" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="left" android:layout_gravity="left" android:orientation="horizontal" android:id="@id/list1" android:descendantFocusability="beforeDescendants" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <RadioButton android:id="@id/radioBtn1" android:focusable="false" android:clickable="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/radio_btn_background" />
+                <TextView android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="7.0dip" android:text="@string/English" />
+            </LinearLayout>
+            <LinearLayout android:gravity="left" android:layout_gravity="left" android:orientation="horizontal" android:id="@id/list2" android:descendantFocusability="beforeDescendants" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <RadioButton android:id="@id/radioBtn2" android:focusable="false" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@drawable/radio_btn_background" />
+                <TextView android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="7.0dip" android:text="@string/Russian" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <Button android:textStyle="bold" android:textColor="@color/white" android:gravity="center" android:layout_gravity="bottom|center" android:id="@id/changeBtn" android:background="@drawable/button_selector" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="35.0dip" android:text="@string/change" />
+</FrameLayout>

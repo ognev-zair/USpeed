@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/USpeed.iml" filepath="$PROJECT_DIR$/USpeed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/menudrawer/menudrawer.iml" filepath="$PROJECT_DIR$/modules/menudrawer/menudrawer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/modules.iml" filepath="$PROJECT_DIR$/modules/modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uspeed/uspeed.iml" filepath="$PROJECT_DIR$/uspeed/uspeed.iml" />
+    </modules>
+  </component>
+</project>

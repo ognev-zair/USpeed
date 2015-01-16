@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="mdActiveViewPosition" />
+    <item type="id" name="mdContent" />
+    <item type="id" name="mdMenu" />
+    <item type="id" name="md__content" />
+    <item type="id" name="md__drawer" />
+    <item type="id" name="md__menu" />
+    <item type="id" name="md__translationX" />
+    <item type="id" name="md__translationY" />
+    <item type="id" name="closeDialog">false</item>
+    <item type="id" name="okBtn">false</item>
+    <item type="id" name="speedometerView">false</item>
+    <item type="id" name="speedometer_view">false</item>
+    <item type="id" name="shareFacebook">false</item>
+    <item type="id" name="listView">false</item>
+    <item type="id" name="list1">false</item>
+    <item type="id" name="radioBtn1">false</item>
+    <item type="id" name="list2">false</item>
+    <item type="id" name="radioBtn2">false</item>
+    <item type="id" name="changeBtn">false</item>
+    <item type="id" name="leftId">false</item>
+    <item type="id" name="rightId">false</item>
+    <item type="id" name="phoneNumber">false</item>
+    <item type="id" name="cancelBtn">false</item>
+    <item type="id" name="com_facebook_picker_list_view">false</item>
+    <item type="id" name="com_facebook_picker_activity_circle">false</item>
+    <item type="id" name="com_facebook_login_activity_progress_bar">false</item>
+    <item type="id" name="com_facebook_picker_row_activity_circle">false</item>
+    <item type="id" name="com_facebook_picker_checkbox">false</item>
+    <item type="id" name="com_facebook_picker_image">false</item>
+    <item type="id" name="com_facebook_picker_profile_pic_stub">false</item>
+    <item type="id" name="com_facebook_picker_title">false</item>
+    <item type="id" name="com_facebook_picker_checkbox_stub">false</item>
+    <item type="id" name="com_facebook_picker_list_section_header">false</item>
+    <item type="id" name="com_facebook_picker_top_bar">false</item>
+    <item type="id" name="com_facebook_picker_done_button">false</item>
+    <item type="id" name="com_facebook_picker_divider">false</item>
+    <item type="id" name="com_facebook_picker_title_bar_stub">false</item>
+    <item type="id" name="com_facebook_picker_title_bar">false</item>
+    <item type="id" name="picker_subtitle">false</item>
+    <item type="id" name="com_facebook_search_bar_view">false</item>
+    <item type="id" name="com_facebook_picker_search_text">false</item>
+    <item type="id" name="com_facebook_body_frame">false</item>
+    <item type="id" name="com_facebook_tooltip_bubble_view_top_pointer">false</item>
+    <item type="id" name="com_facebook_button_xout">false</item>
+    <item type="id" name="com_facebook_tooltip_bubble_view_text_body">false</item>
+    <item type="id" name="com_facebook_tooltip_bubble_view_bottom_pointer">false</item>
+    <item type="id" name="com_facebook_usersettingsfragment_logo_image">false</item>
+    <item type="id" name="com_facebook_usersettingsfragment_profile_name">false</item>
+    <item type="id" name="com_facebook_usersettingsfragment_login_button">false</item>
+    <item type="id" name="next">false</item>
+    <item type="id" name="ignored_view">false</item>
+    <item type="id" name="enter">false</item>
+    <item type="id" name="authButton">false</item>
+    <item type="id" name="main_fragment">false</item>
+    <item type="id" name="mapHolder">false</item>
+    <item type="id" name="currentLocation">false</item>
+    <item type="id" name="address">false</item>
+    <item type="id" name="workingTime">false</item>
+    <item type="id" name="text">false</item>
+    <item type="id" name="list">false</item>
+    <item type="id" name="textView">false</item>
+    <item type="id" name="facebookProfileInfo">false</item>
+    <item type="id" name="profileAvatar">false</item>
+    <item type="id" name="name">false</item>
+    <item type="id" name="location">false</item>
+    <item type="id" name="deviceModel">false</item>
+    <item type="id" name="androidVersion">false</item>
+    <item type="id" name="verticalPix">false</item>
+    <item type="id" name="horizontalPix">false</item>
+    <item type="id" name="toastMsg">false</item>
+    <item type="id" name="reportItem">false</item>
+    <item type="id" name="count">false</item>
+    <item type="id" name="date">false</item>
+    <item type="id" name="networkType">false</item>
+    <item type="id" name="downloadSpeed">false</item>
+    <item type="id" name="uploadSpeed">false</item>
+    <item type="id" name="countTesting">false</item>
+    <item type="id" name="bestResult">false</item>
+    <item type="id" name="reportsList">false</item>
+    <item type="id" name="emptyText">false</item>
+    <item type="id" name="changeFacebookAccount">false</item>
+    <item type="id" name="settingsFacebookBtn">false</item>
+    <item type="id" name="changePhoneNumber">false</item>
+    <item type="id" name="changeLanguage">false</item>
+    <item type="id" name="clearCache">false</item>
+    <item type="id" name="aboutApp">false</item>
+    <item type="id" name="testMode">false</item>
+    <item type="id" name="onlineMode">false</item>
+</resources>

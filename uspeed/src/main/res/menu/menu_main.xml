@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@id/testMode" android:orderInCategory="100" android:title="@string/testMode" android:showAsAction="never" />
+    <item android:id="@id/onlineMode" android:orderInCategory="100" android:title="@string/onlineMode" android:showAsAction="never" />
+</menu>
