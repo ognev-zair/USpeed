@@ -30,35 +30,29 @@ public class LocationAsyncTask extends AsyncTask
         context = context1;
     }
 
-    protected volatile Object doInBackground(Object aobj[])
+    protected String doInBackground()
     {
-        return doInBackground((Void[])aobj);
-    }
 
-    protected transient String doInBackground(Void avoid[])
-    {
         Geocoder geocoder;
-        Object obj;
         geocoder = new Geocoder(context, Locale.getDefault());
-        obj = new ArrayList();
-        List list = geocoder.getFromLocation(latLong.latitude, latLong.longitude, 1);
-        obj = list;
-_L2:
-        String s = "";
+        List list = null;
+        try {
+            list = geocoder.getFromLocation(latLong.latitude, latLong.longitude, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String s1 = "";
         String s2 = "";
-        if (((List) (obj)).size() > 0)
+        String s3 = "";
+        if (list != null && list.size() > 0)
         {
-            s = ((Address)((List) (obj)).get(0)).getAddressLine(0);
-            s1 = ((Address)((List) (obj)).get(0)).getAddressLine(1);
-            s2 = ((Address)((List) (obj)).get(0)).getAddressLine(2);
+            s1 = ((Address)((List) (list)).get(0)).getAddressLine(0);
+            s2 = ((Address)((List) (list)).get(0)).getAddressLine(1);
+            s3 = ((Address)((List) (list)).get(0)).getAddressLine(2);
         }
-        return (new StringBuilder()).append(s2).append(", ").append(s1).append(", ").append(s).toString();
-        IOException ioexception;
-        ioexception;
-        ioexception.printStackTrace();
-        if (true) goto _L2; else goto _L1
-_L1:
+        String address = new StringBuilder().append(s3).append(", ").append(s2).append(", ").append(s1).toString();
+
+        return address;
     }
 
     public String getAddress()
@@ -66,7 +60,7 @@ _L1:
         return address;
     }
 
-    protected volatile void onPostExecute(Object obj)
+    protected void onPostExecute(Object obj)
     {
         onPostExecute((String)obj);
     }
@@ -80,6 +74,11 @@ _L1:
         }
         address = s;
         USpeedApplication.getPreferences().saveLocation(s);
+    }
+
+    @Override
+    protected Object doInBackground(Object[] objects) {
+        return doInBackground();
     }
 
     protected void onPreExecute()

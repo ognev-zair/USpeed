@@ -4,6 +4,7 @@
 
 package com.ognev.game.uspeed.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,12 +13,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
+import com.ognev.game.uspeed.R;
 import com.ognev.game.uspeed.fragment.dilaog.AboutAppDialogFragment;
 import com.ognev.game.uspeed.fragment.dilaog.ChangeNumberDialogFragment;
 import com.ognev.game.uspeed.fragment.dilaog.ChangeSystemLanguageDialogFragment;
@@ -27,12 +30,9 @@ import com.ognev.game.uspeed.ormlite.model.User;
 
 import java.sql.SQLException;
 
-// Referenced classes of package com.ognev.game.uspeed.fragment:
-//            BaseFragment
 
 public class SettingsFragment extends BaseFragment
-    implements android.view.View.OnClickListener
-{
+        implements android.view.View.OnClickListener {
 
     private FrameLayout aboutApp;
     private FrameLayout changeFacebookAccount;
@@ -45,102 +45,78 @@ public class SettingsFragment extends BaseFragment
     private View toastView;
     private GraphUser user;
 
-    public SettingsFragment()
-    {
+    public SettingsFragment() {
     }
 
-    public void onClick(View view)
-    {
-        switch (view.getId())
-        {
-        case 2131099762: 
-        default:
-            return;
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.changeFacebookAccount:
+                loginButton.performClick();
+                return;
 
-        case 2131099761: 
-            loginButton.performClick();
-            return;
+            case R.id.changePhoneNumber:
+                (new ChangeNumberDialogFragment()).show(getFragmentManager(), "number");
+                return;
 
-        case 2131099763: 
-            (new ChangeNumberDialogFragment()).show(getFragmentManager(), "number");
-            return;
+            case R.id.changeLanguage:
+                (new ChangeSystemLanguageDialogFragment()).show(getFragmentManager(), "language");
+                return;
 
-        case 2131099764: 
-            (new ChangeSystemLanguageDialogFragment()).show(getFragmentManager(), "language");
-            return;
+            case R.id.clearCache:
+                (new ClearCacheDialogFragment()).show(getFragmentManager(), "cache");
+                return;
 
-        case 2131099765: 
-            (new ClearCacheDialogFragment()).show(getFragmentManager(), "cache");
-            return;
-
-        case 2131099766: 
-            (new AboutAppDialogFragment()).show(getFragmentManager(), "aboutMe");
-            break;
+            case R.id.aboutApp:
+                (new AboutAppDialogFragment()).show(getFragmentManager(), "aboutMe");
+                break;
         }
     }
 
-    public void onCreate(Bundle bundle)
-    {
+    public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        LayoutInflater layoutinflater = (LayoutInflater)getActivity().getSystemService("layout_inflater");
-        try
-        {
+        LayoutInflater layoutinflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        try {
             localUser = (User) HelperFactory.getHelper().getUserDao().queryForId("me");
-        }
-        catch (SQLException sqlexception)
-        {
+        } catch (SQLException sqlexception) {
             sqlexception.printStackTrace();
         }
-        toastView = layoutinflater.inflate(0x7f030020, null);
-        toastTextMsg = (TextView)toastView.findViewById(0x7f060066);
+        toastView = layoutinflater.inflate(R.layout.qapp_toast, null);
+        toastTextMsg = (TextView) toastView.findViewById(R.id.toastMsg);
     }
 
-    public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle)
-    {
-        View view = layoutinflater.inflate(0x7f030023, viewgroup, false);
-        changeFacebookAccount = (FrameLayout)view.findViewById(0x7f060071);
-        changePhoneNumber = (FrameLayout)view.findViewById(0x7f060073);
-        changeSystemLanguage = (FrameLayout)view.findViewById(0x7f060074);
-        clearCache = (FrameLayout)view.findViewById(0x7f060075);
-        aboutApp = (FrameLayout)view.findViewById(0x7f060076);
-        loginButton = (LoginButton)view.findViewById(0x7f060072);
+    public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle) {
+        View view = layoutinflater.inflate(R.layout.settings_view, viewgroup, false);
+        changeFacebookAccount = (FrameLayout) view.findViewById(R.id.changeFacebookAccount);
+        changePhoneNumber = (FrameLayout) view.findViewById(R.id.changePhoneNumber);
+        changeSystemLanguage = (FrameLayout) view.findViewById(R.id.changeLanguage);
+        clearCache = (FrameLayout) view.findViewById(R.id.clearCache);
+        aboutApp = (FrameLayout) view.findViewById(R.id.aboutApp);
+        loginButton = (LoginButton) view.findViewById(R.id.settingsFacebookBtn);
         loginButton.setFragment(this);
-        loginButton.setPublishPermissions(new String[] {
-            "user_photos", "publish_checkins", "publish_actions", "publish_stream"
+        loginButton.setPublishPermissions(new String[]{
+                "user_photos", "publish_checkins", "publish_actions", "publish_stream"
         });
-        loginButton.setLoginLogoutEventName("fb_user_settings_vc_usage");
+//        loginButton.setLoginLogoutEventName("fb_user_settings_vc_usage");
         Session session = getSession();
-        if (session != null && !session.equals(Session.getActiveSession()))
-        {
+        if (session != null && !session.equals(Session.getActiveSession())) {
             loginButton.setSession(session);
         }
         loginButton.setSessionStatusCallback(new com.facebook.Session.StatusCallback() {
 
-            final SettingsFragment this$0;
-
-            public void call(Session session1, SessionState sessionstate, Exception exception)
-            {
-                if (session1.isOpened())
-                {
+            public void call(Session session1, SessionState sessionstate, Exception exception) {
+                if (session1.isOpened()) {
                     Log.i("settings", (new StringBuilder()).append("Access Token").append(session1.getAccessToken()).toString());
                     Request.executeMeRequestAsync(session1, new com.facebook.Request.GraphUserCallback() {
 
-                        final _cls1 this$1;
-
-                        public void onCompleted(GraphUser graphuser, Response response)
-                        {
-                            if (graphuser != null)
-                            {
+                        public void onCompleted(GraphUser graphuser, Response response) {
+                            if (graphuser != null) {
                                 Log.i("settings", (new StringBuilder()).append("User ID ").append(graphuser.getId()).toString());
                                 Log.i("settings", (new StringBuilder()).append("Email ").append(graphuser.asMap().get("email")).toString());
                                 User user1;
                                 Toast toast;
-                                try
-                                {
-                                    user1 = (User)HelperFactory.getHelper().getUserDao().queryForId("me");
-                                }
-                                catch (SQLException sqlexception)
-                                {
+                                try {
+                                    user1 = (User) HelperFactory.getHelper().getUserDao().queryForId("me");
+                                } catch (SQLException sqlexception) {
                                     sqlexception.printStackTrace();
                                     user1 = null;
                                 }
@@ -151,43 +127,31 @@ public class SettingsFragment extends BaseFragment
                                 user1.setSurname(graphuser.getLastName());
                                 user1.setFacebookToken(response.getRequest().getSession().getAccessToken());
                                 user1.setFacebookId(graphuser.getId());
-                                try
-                                {
+                                try {
                                     HelperFactory.getHelper().getUserDao().createOrUpdate(user1);
-                                }
-                                catch (SQLException sqlexception1)
-                                {
+                                } catch (SQLException sqlexception1) {
                                     sqlexception1.printStackTrace();
                                 }
                                 toast = new Toast(getActivity());
-                                toastTextMsg.setText((new StringBuilder()).append(getString(0x7f090052)).append(" ").append(graphuser.getName()).toString());
+                                toastTextMsg.setText((new StringBuilder()).append(getString(R.string.accauntChanged)).append(" ").append(graphuser.getName()).toString());
                                 toast.setView(toastView);
                                 toast.show();
                             }
                         }
 
-            
-            {
-                this$1 = _cls1.this;
-                super();
-            }
+
                     });
                     return;
-                } else
-                {
-                    Toast toast = new Toast(getActivity());
-                    toastTextMsg.setText(getString(0x7f090072));
-                    toast.setView(toastView);
-                    toast.show();
-                    return;
+                } else {
+//                    Toast toast = new Toast(getActivity());
+//                    toastTextMsg.setText(getString(R.string.aboutApp));
+//                    toast.setView(toastView);
+//                    toast.show();
+//                    return;
                 }
             }
 
-            
-            {
-                this$0 = SettingsFragment.this;
-                super();
-            }
+
         });
         changeFacebookAccount.setOnClickListener(this);
         changePhoneNumber.setOnClickListener(this);
@@ -197,8 +161,7 @@ public class SettingsFragment extends BaseFragment
         return view;
     }
 
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
     }
 

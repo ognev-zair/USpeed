@@ -11,76 +11,65 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
 import com.google.android.gms.maps.SupportMapFragment;
 
-public class MyMapFragment extends SupportMapFragment
-{
-    public static interface OnTouchListener
-    {
+public class MyMapFragment extends SupportMapFragment {
+    private OnTouchListener listener;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstance) {
+        View layout = super.onCreateView(layoutInflater, viewGroup, savedInstance);
+
+        TouchableWrapper frameLayout = new TouchableWrapper(getActivity());
+
+        frameLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+        ((ViewGroup) layout).addView(frameLayout,
+                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        return layout;
+    }
+
+    public void setListener(OnTouchListener listener) {
+        this.listener = listener;
+    }
+
+    public static interface OnTouchListener {
         public abstract void onTouch();
     }
 
-    public class TouchableWrapper extends FrameLayout
-    {
+    public class TouchableWrapper extends FrameLayout {
 
-        final MyMapFragment this$0;
-
-        public boolean dispatchTouchEvent(MotionEvent motionevent)
-        {
-            motionevent.getAction();
-            JVM INSTR tableswitch 0 1: default 28
-        //                       0 34
-        //                       1 59;
-               goto _L1 _L2 _L3
-_L1:
-            return super.dispatchTouchEvent(motionevent);
-_L2:
-            if (listener != null)
-            {
-                listener.onTouch();
-            }
-            continue; /* Loop/switch isn't completed */
-_L3:
-            if (listener != null)
-            {
-                listener.onTouch();
-            }
-            if (true) goto _L1; else goto _L4
-_L4:
-        }
-
-        public TouchableWrapper(Context context)
-        {
-            this$0 = MyMapFragment.this;
+        public TouchableWrapper(Context context) {
             super(context);
         }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    if (listener != null) {
+                        listener.onTouch();
+                    }
+                    break;
+                case MotionEvent.ACTION_UP:
+                    if (listener != null) {
+                        listener.onTouch();
+                    }
+                    break;
+            }
+            return super.dispatchTouchEvent(event);
+        }
     }
 
-
-    private OnTouchListener listener;
-
-    public MyMapFragment()
-    {
+    @Override
+    public void onStart() {
+        super.onStart();    //To change body of overridden methods use File | Settings | File Templates.
     }
-
-    public void onCreate(Bundle bundle)
-    {
-        super.onCreate(bundle);
-    }
-
-    public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle)
-    {
-        View view = super.onCreateView(layoutinflater, viewgroup, bundle);
-        TouchableWrapper touchablewrapper = new TouchableWrapper(getActivity());
-        touchablewrapper.setBackgroundColor(getResources().getColor(0x106000d));
-        ((ViewGroup)view).addView(touchablewrapper, new android.view.ViewGroup.LayoutParams(-1, -1));
-        return view;
-    }
-
-    public void setListener(OnTouchListener ontouchlistener)
-    {
-        listener = ontouchlistener;
-    }
-
 }

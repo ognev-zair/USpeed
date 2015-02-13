@@ -4,6 +4,7 @@
 
 package com.ognev.game.uspeed.fragment;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.ognev.game.uspeed.R;
 import com.ognev.game.uspeed.adapter.ReportAdapter;
 import com.ognev.game.uspeed.ormlite.HelperFactory;
 import com.ognev.game.uspeed.ormlite.model.History;
@@ -23,8 +26,7 @@ import java.util.List;
 // Referenced classes of package com.ognev.game.uspeed.fragment:
 //            BaseFragment
 
-public class ReportsFragment extends BaseFragment
-{
+public class ReportsFragment extends BaseFragment {
 
     private TextView address;
     private History bestHistory;
@@ -40,102 +42,114 @@ public class ReportsFragment extends BaseFragment
     private ListView reportsListView;
     private TextView uploadSpeed;
 
-    public ReportsFragment()
-    {
+    public ReportsFragment() {
     }
 
-    public void onCreate(Bundle bundle)
-    {
+    public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         histories = new ArrayList();
         reportAdapter = new ReportAdapter(getActivity(), histories);
     }
 
-    public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle)
-    {
+    public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle) {
         View view;
         long l;
-        view = layoutinflater.inflate(0x7f030022, null);
-        bestResult = (LinearLayout)view.findViewById(0x7f06006e);
-        date = (TextView)view.findViewById(0x7f060069);
-        address = (TextView)view.findViewById(0x7f060059);
-        networkType = (TextView)view.findViewById(0x7f06006a);
-        downloadSpeed = (TextView)view.findViewById(0x7f06006b);
-        uploadSpeed = (TextView)view.findViewById(0x7f06006c);
-        countTesting = (TextView)view.findViewById(0x7f06006d);
-        emptyText = (TextView)view.findViewById(0x7f060070);
+        view = layoutinflater.inflate(R.layout.report_view, null);
+        bestResult = (LinearLayout) view.findViewById(R.id.bestResult);
+        date = (TextView) view.findViewById(R.id.date);
+        address = (TextView) view.findViewById(R.id.address);
+        networkType = (TextView) view.findViewById(R.id.networkType);
+        downloadSpeed = (TextView) view.findViewById(R.id.downloadSpeed);
+        uploadSpeed = (TextView) view.findViewById(R.id.uploadSpeed);
+        countTesting = (TextView) view.findViewById(R.id.countTesting);
+        emptyText = (TextView) view.findViewById(R.id.emptyText);
         histories.clear();
         l = 0L;
-        histories.addAll(HelperFactory.getHelper().getHistoryDao().queryForAll());
-        l = HelperFactory.getHelper().getHistoryDao().countOf();
-        if (l > 0L)
-        {
-            try
-            {
-                bestHistory = HelperFactory.getHelper().getHistoryDao().selectTheBestResult();
-            }
-            catch (SQLException sqlexception)
-            {
-                sqlexception.printStackTrace();
-            }
+        try {
+            histories.addAll(HelperFactory.getHelper().getHistoryDao().queryForAll());
+            l = HelperFactory.getHelper().getHistoryDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        countTesting.setText((new StringBuilder()).append(l).append(" ").append(getString(0x7f090080)).toString());
+//        if (l > 0L) {
+//            try {
+//                bestHistory = HelperFactory.getHelper().getHistoryDao().selectTheBestResult();
+//            } catch (SQLException sqlexception) {
+//                sqlexception.printStackTrace();
+//            }
+//        }
+        countTesting.setText((new StringBuilder()).append(l).append(" ").append(getString(R.string.time)).toString());
         reportAdapter.notifyDataSetChanged();
-        if (bestHistory != null)
-        {
-            date.setText(bestHistory.getDate());
-            address.setText(bestHistory.getLocation());
-            networkType.setText(bestHistory.getNetworkType());
-            downloadSpeed.setText(bestHistory.getDownloadSpeed());
-            uploadSpeed.setText(bestHistory.getUploadSpeed());
-            bestResult.setVisibility(0);
-        } else
-        {
-            bestResult.setVisibility(8);
-        }
-        reportsListView = (ListView)view.findViewById(0x7f06006f);
+
+        SelectBestResult selectBestResult = new SelectBestResult();
+        selectBestResult.execute();
+        reportsListView = (ListView) view.findViewById(R.id.reportsList);
         reportsListView.setAdapter(reportAdapter);
         reportsListView.setEmptyView(emptyText);
         reportAdapter.notifyDataSetChanged();
         reportsListView.setOnScrollListener(new android.widget.AbsListView.OnScrollListener() {
 
-            final ReportsFragment this$0;
-
-            public void onScroll(AbsListView abslistview, int i, int j, int k)
-            {
+            public void onScroll(AbsListView abslistview, int i, int j, int k) {
                 int i1 = 0;
-                while (i1 < reportsListView.getTouchables().size()) 
-                {
-                    View view1 = ((View)reportsListView.getTouchables().get(i1)).findViewById(0x7f060067);
+                while (i1 < reportsListView.getTouchables().size()) {
+                    View view1 = ((View) reportsListView.getTouchables().get(i1)).findViewById(R.id.reportItem);
                     int j1;
-                    if (i1 == 1)
-                    {
-                        j1 = 0x7f02007c;
-                    } else
-                    {
-                        j1 = 0x7f02007d;
+                    if (i1 == 1) {
+                        j1 = R.drawable.reports_item_active;
+                    } else {
+                        j1 = R.drawable.reports_item_inactive;
                     }
                     view1.setBackgroundResource(j1);
                     i1++;
                 }
             }
 
-            public void onScrollStateChanged(AbsListView abslistview, int i)
-            {
+            public void onScrollStateChanged(AbsListView abslistview, int i) {
             }
 
-            
-            {
-                this$0 = ReportsFragment.this;
-                super();
-            }
         });
         return view;
     }
 
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
     }
+    private class SelectBestResult extends AsyncTask<Void, Void, Void> {
 
+        @Override
+        protected Void doInBackground(Void... voids) {
+            List<History> histories = new ArrayList<History>();
+            try {
+                histories.addAll(HelperFactory.getHelper().getHistoryDao().queryForAll());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if(histories.size() > 0) {
+                History history;
+                double max = Double.parseDouble(histories.get(0).getDownloadSpeed());
+                for (int i = 0; i < histories.size(); i++)
+                    if (max <= Double.parseDouble(histories.get(i).getDownloadSpeed())) {
+                        max = Double.parseDouble(histories.get(i).getDownloadSpeed());
+                        bestHistory = histories.get(i);
+                    }
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (bestHistory != null) {
+                date.setText(bestHistory.getDate());
+                address.setText(bestHistory.getLocation());
+                networkType.setText(bestHistory.getNetworkType());
+                downloadSpeed.setText(bestHistory.getDownloadSpeed() + " " + bestHistory.getDownloadPostFix());
+                uploadSpeed.setText(bestHistory.getUploadSpeed() + " " + bestHistory.getUploadPostFix());
+                bestResult.setVisibility(View.VISIBLE);
+            } else {
+                bestResult.setVisibility(View.GONE);
+            }
+        }
+    }
 }

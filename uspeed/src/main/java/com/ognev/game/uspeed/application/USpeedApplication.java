@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.location.Location;
+
 import com.google.android.gms.maps.model.LatLng;
 import com.ognev.game.uspeed.database.LocalPreferences;
 import com.ognev.game.uspeed.ormlite.HelperFactory;
@@ -18,69 +19,55 @@ import com.ognev.game.uspeed.util.LocationAsyncTask;
 import com.ognev.game.uspeed.util.LocationUtil;
 import com.parse.Parse;
 import com.parse.ParseCrashReporting;
+
 import java.sql.SQLException;
 import java.util.Locale;
 
-public class USpeedApplication extends Application
-{
+public class USpeedApplication extends Application {
 
     private static Context context;
     private static LocalPreferences preferences;
     private static User user;
 
-    public USpeedApplication()
-    {
+    public USpeedApplication() {
     }
 
-    public static Context getContext()
-    {
+    public static Context getContext() {
         return context;
     }
 
-    public static LocalPreferences getPreferences()
-    {
+    public static LocalPreferences getPreferences() {
         return preferences;
     }
 
-    public static User getUser()
-    {
+    public static User getUser() {
         return user;
     }
 
-    public static void setUser(User user1)
-    {
+    public static void setUser(User user1) {
         user = user1;
     }
 
-    public void onCreate()
-    {
+    public void onCreate() {
         super.onCreate();
-        (new LocationUtil(getApplicationContext())).getLocation(getApplicationContext(), new Listener() {
-
-            final USpeedApplication this$0;
-
-            public void onError(Exception exception)
-            {
-            }
-
-            public void onSuccess(Location location)
-            {
-                LocationAsyncTask locationasynctask = new LocationAsyncTask(getApplicationContext());
-                locationasynctask.setLatLong(new LatLng(location.getLatitude(), location.getLongitude()));
-                locationasynctask.execute(new Void[0]);
-            }
-
-            public volatile void onSuccess(Object obj)
-            {
-                onSuccess((Location)obj);
-            }
-
-            
-            {
-                this$0 = USpeedApplication.this;
-                super();
-            }
-        });
+//        (new LocationUtil(getApplicationContext())).getLocation(getApplicationContext(), new Listener() {
+//
+//
+//            public void onError(Exception exception) {
+//            }
+//
+//            public void onSuccess(Location location) {
+//                LocationAsyncTask locationasynctask = new LocationAsyncTask(getApplicationContext());
+//                locationasynctask.setLatLong(new LatLng(location.getLatitude(), location.getLongitude()));
+//                locationasynctask.execute(new Void[0]);
+//            }
+//
+//            public volatile void onSuccess(Object obj) {
+//                onSuccess((Location) obj);
+//            }
+//
+//
+//        });
         context = getApplicationContext();
         preferences = new LocalPreferences();
         HelperFactory.setHelper(context);
@@ -90,38 +77,30 @@ public class USpeedApplication extends Application
         Resources resources;
         android.util.DisplayMetrics displaymetrics;
         Configuration configuration;
-        try
-        {
-            user1 = (User)HelperFactory.getHelper().getUserDao().queryForId("me");
-        }
-        catch (SQLException sqlexception)
-        {
+        try {
+            user1 = (User) HelperFactory.getHelper().getUserDao().queryForId("me");
+        } catch (SQLException sqlexception) {
             sqlexception.printStackTrace();
             user1 = null;
         }
         resources = context.getResources();
         displaymetrics = resources.getDisplayMetrics();
         configuration = resources.getConfiguration();
-        if (user1 != null)
-        {
+        if (user1 != null) {
             String s;
-            if (user1.getSystemLanguage())
-            {
+            if (user1.getSystemLanguage()) {
                 s = "en";
-            } else
-            {
+            } else {
                 s = "ru";
             }
             configuration.locale = new Locale(s);
-        } else
-        {
+        } else {
             configuration.locale = new Locale("ru");
         }
         resources.updateConfiguration(configuration, displaymetrics);
     }
 
-    public void onTerminate()
-    {
+    public void onTerminate() {
         super.onTerminate();
         preferences.restoreAll();
     }

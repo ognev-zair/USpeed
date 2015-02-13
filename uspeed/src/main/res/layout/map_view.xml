@@ -1,15 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <FrameLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="0.7">
-        <FrameLayout android:id="@id/mapHolder" android:layout_width="fill_parent" android:layout_height="fill_parent" />
-        <TextView android:textColor="@color/specialBlue" android:gravity="center_horizontal" android:id="@id/currentLocation" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/detectingLocation" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="0.7">
+
+        <FrameLayout
+            android:id="@id/mapHolder"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+        <TextView
+            android:id="@id/currentLocation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/detectingLocation"
+            android:textColor="@color/specialBlue"/>
     </FrameLayout>
-    <LinearLayout android:background="@drawable/map_bottom" android:layout_width="fill_parent" android:layout_height="wrap_content">
-        <TextView android:textSize="@dimen/mapTextSize" android:textColor="@color/white" android:id="@id/address" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="20.0dip" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/map_bottom">
+
+        <TextView
+            android:id="@id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20.0dip"
+            android:textColor="@color/white"
+            android:textSize="@dimen/mapTextSize"/>
     </LinearLayout>
-    <LinearLayout android:orientation="horizontal" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="20.0dip">
-        <ImageView android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/time" android:scaleType="centerInside" />
-        <TextView android:textSize="@dimen/mapTextSize" android:id="@id/workingTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="2" android:lines="2" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20.0dip"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/time"/>
+
+        <TextView
+            android:id="@id/workingTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:maxLines="2"
+            android:textSize="@dimen/mapTextSize"/>
     </LinearLayout>
 </LinearLayout>

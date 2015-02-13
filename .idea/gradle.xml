@@ -5,11 +5,13 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="D:/jTools/gradle-2.1-all/gradle-2.1" />
+        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.2.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/modules" />
+            <option value="$PROJECT_DIR$/modules/circularimageview" />
+            <option value="$PROJECT_DIR$/modules/facebook" />
             <option value="$PROJECT_DIR$/modules/menudrawer" />
             <option value="$PROJECT_DIR$/uspeed" />
           </set>
@@ -18,3 +20,4 @@
     </option>
   </component>
 </project>
+

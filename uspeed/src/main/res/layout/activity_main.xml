@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:gravity="center" android:background="@drawable/fon" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <FrameLayout android:id="@id/speedometerView" android:background="@drawable/fon" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <com.ognev.game.uspeed.view.SpeedometerView android:layout_gravity="center" android:id="@id/speedometer_view" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/fon"
+                android:gravity="center">
+
+    <FrameLayout
+        android:id="@id/speedometerView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/fon">
+
+        <com.ognev.game.uspeed.view.SpeedometerView
+            android:id="@id/speedometer_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"/>
     </FrameLayout>
-    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignBottom="@id/speedometerView" android:layout_centerHorizontal="true">
-        <Button android:textColor="@color/white" android:id="@id/start" android:background="@drawable/speedometer_btn_selector" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/start" android:layout_centerHorizontal="true" />
-        <Button android:textSize="12.0dip" android:id="@id/shareFacebook" android:background="@drawable/facebook_btn_selector" android:paddingLeft="4.0dip" android:paddingRight="4.0dip" android:layout_width="wrap_content" android:layout_height="35.0dip" android:layout_margin="12.0dip" android:text="Опубликовать" android:drawableLeft="@drawable/fb_logo" android:layout_alignBottom="@id/start" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/speedometerView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/speedometer_btn_selector"
+            android:text="@string/start"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@id/shareFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="35.0dip"
+            android:layout_alignBottom="@id/start"
+            android:layout_margin="12.0dip"
+            android:background="@drawable/facebook_btn_selector"
+            android:drawableLeft="@drawable/fb_logo"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:text="Опубликовать"
+            android:textSize="12.0dip"/>
     </LinearLayout>
 </RelativeLayout>

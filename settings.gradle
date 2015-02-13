@@ -1,2 +1,4 @@
-include ':uspeed'
+include ':uspeed', ':facebook', ':circularimageview'
 include ':modules:menudrawer'
+project(':facebook').projectDir = new File('modules/facebook')
+project(':circularimageview').projectDir = new File('modules/circularimageview')

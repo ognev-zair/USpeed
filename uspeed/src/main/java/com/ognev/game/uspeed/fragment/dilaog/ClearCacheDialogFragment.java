@@ -5,6 +5,7 @@
 package com.ognev.game.uspeed.fragment.dilaog;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ognev.game.uspeed.R;
 import com.ognev.game.uspeed.ormlite.HelperFactory;
 
 import java.sql.SQLException;
@@ -34,16 +37,14 @@ public class ClearCacheDialogFragment extends DialogFragment
 
     public void onClick(View view)
     {
-        switch (view.getId())
-        {
-        default:
-            return;
+        switch (view.getId()) {
 
-        case 2131099703: 
+
+        case R.id.closeDialog:
             dismiss();
             return;
 
-        case 2131099690: 
+        case R.id.okBtn:
             Toast toast;
             try
             {
@@ -54,14 +55,14 @@ public class ClearCacheDialogFragment extends DialogFragment
             {
                 sqlexception.printStackTrace();
             }
-            toastTextMsg.setText(getString(0x7f090077));
+            toastTextMsg.setText(getString(R.string.cleared));
             toast = new Toast(getActivity());
             toast.setView(toastView);
             toast.show();
             dismiss();
             return;
 
-        case 2131099689: 
+        case R.id.cancelBtn:
             dismiss();
             return;
         }
@@ -69,19 +70,19 @@ public class ClearCacheDialogFragment extends DialogFragment
 
     public Dialog onCreateDialog(Bundle bundle)
     {
-        Dialog dialog = new Dialog(getActivity(), 0x7f0a0001);
+        Dialog dialog = new Dialog(getActivity(), R.style.DialogPopUp);
         dialog.setCanceledOnTouchOutside(false);
         return dialog;
     }
 
     public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle)
     {
-        View view = layoutinflater.inflate(0x7f030005, null);
-        toastView = ((LayoutInflater)getActivity().getSystemService("layout_inflater")).inflate(0x7f030020, null);
-        toastTextMsg = (TextView)toastView.findViewById(0x7f060066);
-        cancelBtn = (Button)view.findViewById(0x7f060037);
-        okBtn = (Button)view.findViewById(0x7f06002a);
-        close = (ImageView)view.findViewById(0x7f060029);
+        View view = layoutinflater.inflate(R.layout.clear_cache_dialog_view, null);
+        toastView = ((LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.qapp_toast, null);
+        toastTextMsg = (TextView)toastView.findViewById(R.id.toastMsg);
+        cancelBtn = (Button)view.findViewById(R.id.cancelBtn);
+        okBtn = (Button)view.findViewById(R.id.okBtn);
+        close = (ImageView)view.findViewById(R.id.closeDialog);
         cancelBtn.setOnClickListener(this);
         close.setOnClickListener(this);
         okBtn.setOnClickListener(this);

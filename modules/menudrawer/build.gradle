@@ -12,13 +12,12 @@ android {
         }
     }
 
-    compileSdkVersion 17
-    buildToolsVersion "21.1.1"
-
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 16
+        minSdkVersion 10
+        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
     }
 }
 
@@ -39,4 +38,4 @@ android.libraryVariants.all { variant ->
     project.tasks.getByName("check").dependsOn checkstyle
 }
 
-apply from: 'https://raw.github.com/SimonVT/gradle-mvn-push/0.11/gradle-mvn-push.gradle'
+//apply from: 'https://raw.github.com/SimonVT/gradle-mvn-push/0.11/gradle-mvn-push.gradle'

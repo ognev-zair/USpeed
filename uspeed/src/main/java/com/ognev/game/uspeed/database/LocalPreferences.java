@@ -5,6 +5,8 @@
 package com.ognev.game.uspeed.database;
 
 import android.content.SharedPreferences;
+
+import com.ognev.game.uspeed.R;
 import com.ognev.game.uspeed.application.USpeedApplication;
 
 public class LocalPreferences
@@ -21,7 +23,7 @@ public class LocalPreferences
 
     public String getLocation()
     {
-        return preferences.getString("locationAddress", USpeedApplication.getContext().getResources().getString(0x7f090082));
+        return preferences.getString("locationAddress", USpeedApplication.getContext().getResources().getString(R.string.locationUnknown));
     }
 
     public String getMenuBackgroundPath()

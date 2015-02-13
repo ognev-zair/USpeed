@@ -9,16 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.ognev.game.uspeed.R;
+
 import java.util.List;
 
 // Referenced classes of package com.ognev.game.uspeed.fragment:
 //            Item
 
-public class MenuAdapter extends BaseAdapter
-{
-    public static interface MenuListener
-    {
+public class MenuAdapter extends BaseAdapter {
+    public static interface MenuListener {
 
         public abstract void onActiveViewChanged(View view);
     }
@@ -29,80 +31,66 @@ public class MenuAdapter extends BaseAdapter
     private List mItems;
     private MenuListener mListener;
 
-    public MenuAdapter(Context context, List list)
-    {
+    public MenuAdapter(Context context, List list) {
         mActivePosition = -1;
         mContext = context;
         mItems = list;
     }
 
-    public boolean areAllItemsEnabled()
-    {
+    public boolean areAllItemsEnabled() {
         return false;
     }
 
-    public int getCount()
-    {
+    public int getCount() {
         return mItems.size();
     }
 
-    public Object getItem(int i)
-    {
+    public Object getItem(int i) {
         return mItems.get(i);
     }
 
-    public long getItemId(int i)
-    {
-        return (long)i;
+    public long getItemId(int i) {
+        return (long) i;
     }
 
-    public int getItemViewType(int i)
-    {
+    public int getItemViewType(int i) {
         return !(getItem(i) instanceof Item) ? 1 : 0;
     }
 
-    public View getView(int i, View view, ViewGroup viewgroup)
-    {
-        View view1 = view;
+    public View getView(int i, View view, ViewGroup viewgroup) {
         Object obj = getItem(i);
-        if (view1 == null)
-        {
-            view1 = LayoutInflater.from(mContext).inflate(0x7f03001c, viewgroup, false);
+        if (view == null) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.menu_row_item, null, false);
         }
-        TextView textview = (TextView)view1.findViewById(0x7f06005b);
-        textview.setText(((Item)obj).mTitle);
-        if (android.os.Build.VERSION.SDK_INT >= 17)
-        {
-            textview.setCompoundDrawablesRelativeWithIntrinsicBounds(((Item)obj).mIconRes, 0, 0, 0);
-        } else
-        {
-            textview.setCompoundDrawablesWithIntrinsicBounds(((Item)obj).mIconRes, 0, 0, 0);
+        TextView textview = (TextView) view.findViewById(R.id.text);
+        ImageView imageView = (ImageView) view.findViewById(R.id.image);
+        imageView.setImageResource(((Item) obj).mIconRes);
+        textview.setText(((Item) obj).mTitle);
+//        if (android.os.Build.VERSION.SDK_INT >= 17) {
+//            textview.setCompoundDrawablesRelativeWithIntrinsicBounds(((Item) obj).mIconRes, 0, 0, 0);
+//        } else {
+//            textview.setCompoundDrawablesWithIntrinsicBounds(((Item) obj).mIconRes, 0, 0, 0);
+//        }
+        view.setTag(Integer.valueOf(i));
+        if (i == mActivePosition) {
+            mListener.onActiveViewChanged(view);
         }
-        view1.setTag(0x7f060021, Integer.valueOf(i));
-        if (i == mActivePosition)
-        {
-            mListener.onActiveViewChanged(view1);
-        }
-        return view1;
+        return view;
     }
 
-    public int getViewTypeCount()
-    {
+    public int getViewTypeCount() {
         return 2;
     }
 
-    public boolean isEnabled(int i)
-    {
+    public boolean isEnabled(int i) {
         return getItem(i) instanceof Item;
     }
 
-    public void setActivePosition(int i)
-    {
+    public void setActivePosition(int i) {
         mActivePosition = i;
     }
 
-    public void setListener(MenuListener menulistener)
-    {
+    public void setListener(MenuListener menulistener) {
         mListener = menulistener;
     }
 }

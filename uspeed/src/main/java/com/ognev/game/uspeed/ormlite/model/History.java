@@ -5,77 +5,93 @@
 package com.ognev.game.uspeed.ormlite.model;
 
 
-public class History
-{
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
+@DatabaseTable
+public class History {
+
+    @DatabaseField
     private String date;
+    @DatabaseField
     private String downloadSpeed;
+    @DatabaseField(generatedId = true)
     private Long id;
+    @DatabaseField
     private String location;
+    @DatabaseField
     private String networkType;
+    @DatabaseField
     private String uploadSpeed;
+    @DatabaseField
+    private String downloadPostFix;
+    @DatabaseField
+    private String uploadPostFix;
 
-    public History()
-    {
+    public History() {
     }
 
-    public String getDate()
-    {
+    public String getDate() {
         return date;
     }
 
-    public String getDownloadSpeed()
-    {
+    public String getDownloadSpeed() {
         return downloadSpeed;
     }
 
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
 
-    public String getLocation()
-    {
+    public String getLocation() {
         return location;
     }
 
-    public String getNetworkType()
-    {
+    public String getNetworkType() {
         return networkType;
     }
 
-    public String getUploadSpeed()
-    {
+    public String getUploadSpeed() {
         return uploadSpeed;
     }
 
-    public void setDate(String s)
-    {
+    public void setDate(String s) {
         date = s;
     }
 
-    public void setDownloadSpeed(String s)
-    {
+    public void setDownloadSpeed(String s) {
         downloadSpeed = s;
     }
 
-    public void setId(Long long1)
-    {
+    public void setId(Long long1) {
         id = long1;
     }
 
-    public void setLocation(String s)
-    {
+    public void setLocation(String s) {
         location = s;
     }
 
-    public void setNetworkType(String s)
-    {
+    public void setNetworkType(String s) {
         networkType = s;
     }
 
-    public void setUploadSpeed(String s)
-    {
+    public void setUploadSpeed(String s) {
         uploadSpeed = s;
+    }
+
+    public void setDownloadPostFix(String downloadPostFix) {
+        this.downloadPostFix = downloadPostFix;
+    }
+
+    public String getDownloadPostFix() {
+        return downloadPostFix;
+    }
+
+    public void setUploadPostFix(String uploadPostFix) {
+        this.uploadPostFix = uploadPostFix;
+    }
+
+    public String getUploadPostFix() {
+        return uploadPostFix;
     }
 }

@@ -1,28 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_gravity="left" android:orientation="vertical" android:background="@drawable/dialog_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:layout_gravity="top|right|center" android:id="@id/closeDialog" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/close" />
-    <LinearLayout android:gravity="left" android:layout_gravity="left" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="25.0dip">
-        <TextView android:textSize="18.0dip" android:textStyle="bold" android:textColor="@color/darkBlue" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ChangePhoneNumber" />
-        <View android:background="@color/darkGrey" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginTop="4.0dip" />
-        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="8.0">
-            <LinearLayout android:gravity="left" android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="6.0">
-                <TextView android:textColor="@color/darkGrey" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="@string/ChooseCode" />
-                <LinearLayout android:gravity="left" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:weightSum="4.0">
-                    <LinearLayout android:gravity="left" android:id="@id/leftId" android:descendantFocusability="beforeDescendants" android:layout_width="wrap_content" android:layout_height="wrap_content">
-                        <RadioButton android:id="@id/radioBtn1" android:focusable="false" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:button="@drawable/radio_btn_background" />
-                        <TextView android:textColor="@color/ucellColor" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="7.0dip" android:text="998 93" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:layout_gravity="left"
+             android:background="@drawable/dialog_background"
+             android:orientation="vertical">
+
+    <ImageView
+        android:id="@id/closeDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right|center"
+        android:src="@drawable/close"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="left"
+        android:layout_margin="25.0dip"
+        android:gravity="left"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/ChangePhoneNumber"
+            android:textColor="@color/darkBlue"
+            android:textSize="18.0dip"
+            android:textStyle="bold"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:layout_marginTop="4.0dip"
+            android:background="@color/darkGrey"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="8.0">
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="6.0"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8.0dip"
+                    android:text="@string/ChooseCode"
+                    android:textColor="@color/darkGrey"/>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10.0dip"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    android:weightSum="4.0">
+
+                    <LinearLayout
+                        android:id="@id/leftId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:descendantFocusability="beforeDescendants"
+                        android:gravity="left">
+
+                        <RadioButton
+                            android:id="@id/radioBtn1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/radio_btn_background"
+                            android:checked="true"
+                            android:clickable="false"
+                            android:focusable="false"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7.0dip"
+                            android:text="998 93"
+                            android:textColor="@color/ucellColor"/>
                     </LinearLayout>
-                    <View android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_weight="1.0" />
-                    <LinearLayout android:id="@id/rightId" android:descendantFocusability="beforeDescendants" android:layout_width="wrap_content" android:layout_height="wrap_content">
-                        <RadioButton android:id="@id/radioBtn2" android:focusable="false" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@drawable/radio_btn_background" />
-                        <TextView android:textColor="@color/ucellColor" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="7.0dip" android:text="998 94" />
+
+                    <View
+                        android:layout_width="0.0dip"
+                        android:layout_height="0.0dip"
+                        android:layout_weight="1.0"/>
+
+                    <LinearLayout
+                        android:id="@id/rightId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:descendantFocusability="beforeDescendants">
+
+                        <RadioButton
+                            android:id="@id/radioBtn2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/radio_btn_background"
+                            android:clickable="false"
+                            android:focusable="false"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7.0dip"
+                            android:text="998 94"
+                            android:textColor="@color/ucellColor"/>
                     </LinearLayout>
-                    <View android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_weight="1.0" />
+
+                    <View
+                        android:layout_width="0.0dip"
+                        android:layout_height="0.0dip"
+                        android:layout_weight="1.0"/>
                 </LinearLayout>
-                <TextView android:textColor="@color/darkGrey" android:gravity="left" android:layout_gravity="left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="@string/EnterNumber" />
-                <EditText android:id="@id/phoneNumber" android:background="@drawable/edit_underline" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxLength="7" android:inputType="numberDecimal" />
-                <Button android:textStyle="bold" android:textColor="@color/white" android:layout_gravity="center" android:id="@id/changeBtn" android:background="@drawable/enter_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6.0dip" android:text="@string/change" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="20.0dip"
+                    android:gravity="left"
+                    android:text="@string/EnterNumber"
+                    android:textColor="@color/darkGrey"/>
+
+                <EditText
+                    android:id="@id/phoneNumber"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_underline"
+                    android:inputType="numberDecimal"
+                    android:maxLength="7"/>
+
+                <Button
+                    android:id="@id/changeBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="6.0dip"
+                    android:background="@drawable/enter_btn"
+                    android:text="@string/change"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

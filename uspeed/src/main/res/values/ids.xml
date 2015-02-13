@@ -88,4 +88,5 @@
     <item type="id" name="aboutApp">false</item>
     <item type="id" name="testMode">false</item>
     <item type="id" name="onlineMode">false</item>
+    <item name="start" type="id">старт</item>
 </resources>

@@ -5,27 +5,24 @@
 package com.ognev.game.uspeed.ormlite;
 
 import android.content.Context;
+
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 // Referenced classes of package com.ognev.game.uspeed.ormlite:
 //            DBHelper
 
-public class HelperFactory
-{
+public class HelperFactory {
 
     private static DBHelper helper;
 
-    public HelperFactory()
-    {
+    public HelperFactory() {
     }
 
-    public static DBHelper getHelper()
-    {
+    public static DBHelper getHelper() {
         return helper;
     }
 
-    public static void setHelper(Context context)
-    {
-        helper = (DBHelper)OpenHelperManager.getHelper(context, com/ognev/game/uspeed/ormlite/DBHelper);
+    public static void setHelper(Context context) {
+        helper = (DBHelper) OpenHelperManager.getHelper(context, DBHelper.class);
     }
 }

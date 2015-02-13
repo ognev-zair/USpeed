@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.ognev.game.uspeed.R;
+
 public class AboutAppDialogFragment extends DialogFragment
     implements android.view.View.OnClickListener
 {
@@ -28,14 +30,11 @@ public class AboutAppDialogFragment extends DialogFragment
     {
         switch (view.getId())
         {
-        default:
-            return;
-
-        case 2131099689: 
+            case R.id.okBtn:
             dismiss();
             return;
 
-        case 2131099690: 
+        case R.id.closeDialog:
             dismiss();
             break;
         }
@@ -43,16 +42,16 @@ public class AboutAppDialogFragment extends DialogFragment
 
     public Dialog onCreateDialog(Bundle bundle)
     {
-        Dialog dialog = new Dialog(getActivity(), 0x7f0a0001);
+        Dialog dialog = new Dialog(getActivity(), R.style.DialogPopUp);
         dialog.setCanceledOnTouchOutside(false);
         return dialog;
     }
 
     public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle)
     {
-        View view = layoutinflater.inflate(0x7f030000, null);
-        okBtn = (Button)view.findViewById(0x7f06002a);
-        close = (ImageView)view.findViewById(0x7f060029);
+        View view = layoutinflater.inflate(R.layout.about_app_dialog_view, null);
+        okBtn = (Button)view.findViewById(R.id.okBtn);
+        close = (ImageView)view.findViewById(R.id.closeDialog);
         okBtn.setOnClickListener(this);
         close.setOnClickListener(this);
         return view;

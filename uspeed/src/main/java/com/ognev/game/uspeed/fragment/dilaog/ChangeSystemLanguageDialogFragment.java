@@ -5,6 +5,7 @@
 package com.ognev.game.uspeed.fragment.dilaog;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -19,6 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ognev.game.uspeed.R;
+import com.ognev.game.uspeed.activity.USpeedActivity;
 import com.ognev.game.uspeed.ormlite.HelperFactory;
 import com.ognev.game.uspeed.ormlite.model.User;
 
@@ -50,17 +54,17 @@ public class ChangeSystemLanguageDialogFragment extends DialogFragment
         default:
             return;
 
-        case 2131099695: 
+        case R.id.list1:
             radioButton1.setChecked(true);
             radioButton2.setChecked(false);
             return;
 
-        case 2131099697: 
+        case R.id.list2:
             radioButton1.setChecked(false);
             radioButton2.setChecked(true);
             return;
 
-        case 2131099699: 
+        case R.id.changeBtn:
             Resources resources;
             android.util.DisplayMetrics displaymetrics;
             Configuration configuration;
@@ -89,17 +93,17 @@ public class ChangeSystemLanguageDialogFragment extends DialogFragment
             resources.updateConfiguration(configuration, displaymetrics);
             toast = new Toast(getActivity());
             toast.setView(toastView);
-            intent = new Intent(getActivity(), com/ognev/game/uspeed/activity/USpeedActivity);
+            intent = new Intent(getActivity(), USpeedActivity.class);
             intent.putExtra("language", 1);
             getActivity().finish();
             startActivityForResult(intent, 777);
-            toastTextMsg.setTextColor(getResources().getColor(0x7f05001a));
-            toastTextMsg.setText(getString(0x7f090067));
+            toastTextMsg.setTextColor(getResources().getColor(R.color.ucellColor));
+            toastTextMsg.setText(getString(R.string.languageChanged));
             toast.show();
             dismiss();
             return;
 
-        case 2131099689: 
+        case R.id.closeDialog:
             dismiss();
             return;
         }
@@ -107,22 +111,22 @@ public class ChangeSystemLanguageDialogFragment extends DialogFragment
 
     public Dialog onCreateDialog(Bundle bundle)
     {
-        Dialog dialog = new Dialog(getActivity(), 0x7f0a0001);
+        Dialog dialog = new Dialog(getActivity(), R.style.DialogPopUp);
         dialog.setCanceledOnTouchOutside(false);
         return dialog;
     }
 
     public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle)
     {
-        View view = layoutinflater.inflate(0x7f030003, null);
-        toastView = ((LayoutInflater)getActivity().getSystemService("layout_inflater")).inflate(0x7f030020, null);
-        toastTextMsg = (TextView)toastView.findViewById(0x7f060066);
-        radioButton1 = (RadioButton)view.findViewById(0x7f060030);
-        radioButton2 = (RadioButton)view.findViewById(0x7f060032);
-        changeBtn = (Button)view.findViewById(0x7f060033);
-        close = (ImageView)view.findViewById(0x7f060029);
-        list1 = (LinearLayout)view.findViewById(0x7f06002f);
-        list2 = (LinearLayout)view.findViewById(0x7f060031);
+        View view = layoutinflater.inflate(R.layout.change_language_dialog_view, null);
+        toastView = ((LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.qapp_toast, null);
+        toastTextMsg = (TextView)toastView.findViewById(R.id.toastMsg);
+        radioButton1 = (RadioButton)view.findViewById(R.id.radioBtn1);
+        radioButton2 = (RadioButton)view.findViewById(R.id.radioBtn2);
+        changeBtn = (Button)view.findViewById(R.id.changeBtn);
+        close = (ImageView)view.findViewById(R.id.closeDialog);
+        list1 = (LinearLayout)view.findViewById(R.id.list1);
+        list2 = (LinearLayout)view.findViewById(R.id.list2);
         try
         {
             user = (User)HelperFactory.getHelper().getUserDao().queryForId("me");

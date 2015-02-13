@@ -1,52 +1,301 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:background="@drawable/fon" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:orientation="vertical" android:background="@drawable/fon" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <LinearLayout android:orientation="vertical" android:id="@id/facebookProfileInfo" android:layout_width="fill_parent" android:layout_height="wrap_content">
-            <ImageView android:layout_gravity="center_horizontal" android:layout_width="193.0dip" android:layout_height="44.0dip" android:layout_marginTop="35.0dip" android:src="@drawable/com_facebook_logo" android:contentDescription="@string/com_facebook_logo_content_description" />
-            <com.pkmmte.view.CircularImageView android:layout_gravity="center_horizontal" android:id="@id/profileAvatar" android:layout_width="120.0dip" android:layout_height="120.0dip" android:src="@drawable/menu_profile_ic" android:scaleType="centerInside" />
-            <TextView android:textSize="17.0dip" android:textColor="@color/white" android:layout_gravity="center_horizontal" android:id="@id/name" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fon"
+
+    >
+<LinearLayout
+    android:orientation="vertical"
+    android:weightSum="3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@id/facebookProfileInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="193.0dip"
+                android:layout_height="44.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35.0dip"
+                android:contentDescription="@string/com_facebook_logo_content_description"
+                android:src="@drawable/com_facebook_logo"/>
+
+            <com.pkmmte.view.CircularImageView
+                android:id="@id/profileAvatar"
+                android:layout_width="120.0dip"
+                android:layout_height="120.0dip"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerInside"
+                android:src="@drawable/menu_profile_ic"/>
+
+            <TextView
+                android:id="@id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:textSize="17.0dip"/>
         </LinearLayout>
-        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="7.0">
-            <View android:layout_width="0.0dip" android:layout_height="1.0px" android:layout_weight="0.5" />
-            <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="6.0">
-                <LinearLayout android:orientation="vertical" android:background="@drawable/reports_item_active" android:layout_width="fill_parent" android:layout_height="60.0dip">
-                    <TextView android:textColor="@color/darkGrey" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="@string/yourNumber" />
-                    <View android:background="@color/darkGrey" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
-                    <TextView android:textColor="@color/darkBlue" android:id="@id/phoneNumber" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:text="(998 93) 956 45 45" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="7.0">
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="1.0px"
+                android:layout_weight="0.5"/>
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="6.0"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60.0dip"
+                    android:background="@drawable/reports_item_active"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20.0dip"
+                        android:text="@string/yourNumber"
+                        android:textColor="@color/darkGrey"/>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1.0px"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:background="@color/darkGrey"/>
+
+                    <TextView
+                        android:id="@id/phoneNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30.0dip"
+                        android:textColor="@color/darkBlue"/>
                 </LinearLayout>
-                <LinearLayout android:orientation="vertical" android:background="@drawable/reports_item_active" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="15.0dip">
-                    <TextView android:textColor="@color/darkGrey" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="@string/yourLocation" />
-                    <View android:background="@color/darkGrey" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
-                    <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip">
-                        <ImageView android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/reports_location" android:scaleType="centerCrop" />
-                        <TextView android:textColor="@color/darkBlue" android:id="@id/location" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" android:text="Город, район, улица..." />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60.0dip"
+                    android:layout_marginTop="15.0dip"
+                    android:background="@drawable/reports_item_active"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20.0dip"
+                        android:text="@string/yourLocation"
+                        android:textColor="@color/darkGrey"/>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1.0px"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:background="@color/darkGrey"/>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30.0dip"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/reports_location"/>
+
+                        <TextView
+                            android:id="@id/location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6.0dip"
+                            android:text="Город, район, улица..."
+                            android:textColor="@color/darkBlue"/>
                     </LinearLayout>
                 </LinearLayout>
-                <LinearLayout android:orientation="vertical" android:background="@drawable/reports_item_active" android:paddingRight="12.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:weightSum="7.0">
-                    <TextView android:textColor="@color/darkGrey" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="@string/deviceInfo" />
-                    <View android:background="@color/darkGrey" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
-                    <FrameLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip">
-                        <TextView android:textStyle="bold" android:textColor="@color/darkBlue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/deviceModel" />
-                        <TextView android:textColor="@color/darkBlue" android:gravity="right" android:layout_gravity="right" android:id="@id/deviceModel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" android:text="ss" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12.0dip"
+                    android:background="@drawable/reports_item_active"
+                    android:orientation="vertical"
+                    android:paddingRight="12.0dip"
+                    android:weightSum="7.0">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20.0dip"
+                        android:text="@string/deviceInfo"
+                        android:textColor="@color/darkGrey"/>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1.0px"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:background="@color/darkGrey"/>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20.0dip"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/deviceModel"
+                            android:textColor="@color/darkBlue"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@id/deviceModel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="6.0dip"
+                            android:gravity="right"
+                            android:text="ss"
+                            android:textColor="@color/darkBlue"/>
                     </FrameLayout>
-                    <FrameLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip">
-                        <TextView android:textStyle="bold" android:textColor="@color/darkBlue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/deviceOsVersion" />
-                        <TextView android:textColor="@color/darkBlue" android:layout_gravity="right" android:id="@id/androidVersion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" android:text="ss" />
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20.0dip"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/deviceOsVersion"
+                            android:textColor="@color/darkBlue"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@id/androidVersion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="6.0dip"
+                            android:text="ss"
+                            android:textColor="@color/darkBlue"/>
                     </FrameLayout>
-                    <TextView android:textColor="@color/darkGrey" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="@string/deviceScreenResolution" />
-                    <View android:background="@color/darkGrey" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
-                    <FrameLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip">
-                        <TextView android:textStyle="bold" android:textColor="@color/darkBlue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/deviceScreenResolutionVertical" />
-                        <TextView android:textColor="@color/darkBlue" android:layout_gravity="right" android:id="@id/verticalPix" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20.0dip"
+                        android:text="@string/deviceScreenResolution"
+                        android:textColor="@color/darkGrey"/>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1.0px"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:background="@color/darkGrey"/>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20.0dip"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/deviceScreenResolutionVertical"
+                            android:textColor="@color/darkBlue"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@id/verticalPix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="6.0dip"
+                            android:textColor="@color/darkBlue"/>
                     </FrameLayout>
-                    <FrameLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip">
-                        <TextView android:textStyle="bold" android:textColor="@color/darkBlue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/deviceScreenResolutionHorizontal" />
-                        <TextView android:textColor="@color/darkBlue" android:layout_gravity="right" android:id="@id/horizontalPix" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20.0dip"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/deviceScreenResolutionHorizontal"
+                            android:textColor="@color/darkBlue"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@id/horizontalPix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:textColor="@color/darkBlue"/>
                     </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
-            <View android:layout_width="0.0dip" android:layout_height="1.0px" android:layout_weight="0.5" />
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="1.0px"
+                android:layout_weight="0.5"/>
         </LinearLayout>
     </LinearLayout>
+    <View
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+    <ImageButton
+        android:id="@+id/like_view"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/like_btn"
+        android:scaleType="centerInside"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="25dp"
+        android:layout_marginTop="30dp" />
+</LinearLayout>
 </ScrollView>

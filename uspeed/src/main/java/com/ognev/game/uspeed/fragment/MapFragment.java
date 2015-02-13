@@ -4,6 +4,9 @@
 
 package com.ognev.game.uspeed.fragment;
 
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
@@ -26,20 +30,22 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.ognev.game.uspeed.R;
 import com.ognev.game.uspeed.application.USpeedApplication;
 import com.ognev.game.uspeed.util.Listener;
 import com.ognev.game.uspeed.util.LocationAsyncTask;
 import com.ognev.game.uspeed.util.LocationUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 // Referenced classes of package com.ognev.game.uspeed.fragment:
 //            BaseFragment, MyMapFragment
 
-public class MapFragment extends BaseFragment
-{
+public class MapFragment extends BaseFragment {
 
     private TextView address;
     private LatLng currentLocation;
@@ -59,13 +65,12 @@ public class MapFragment extends BaseFragment
     private HashMap ucellInfoAddress;
     private HashMap ucellInfoTime;
     private TextView workingTime;
+    private boolean isFirst;
 
-    public MapFragment()
-    {
+    public MapFragment() {
     }
 
-    private void blinkText(TextView textview)
-    {
+    private void blinkText(TextView textview) {
         AlphaAnimation alphaanimation = new AlphaAnimation(0.0F, 1.0F);
         alphaanimation.setDuration(800L);
         alphaanimation.setRepeatMode(2);
@@ -73,62 +78,56 @@ public class MapFragment extends BaseFragment
         textview.startAnimation(alphaanimation);
     }
 
-    public void hintText(TextView textview)
-    {
+    public void hintText(TextView textview) {
         AlphaAnimation alphaanimation = new AlphaAnimation(0.0F, 0.0F);
         alphaanimation.setRepeatMode(2);
         alphaanimation.setRepeatCount(-1);
         textview.startAnimation(alphaanimation);
     }
 
-    public void onActivityCreated(Bundle bundle)
-    {
+    public void onActivityCreated(Bundle bundle) {
         super.onActivityCreated(bundle);
     }
 
-    public void onCreate(Bundle bundle)
-    {
+    public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        isFirst = true;
         latLngs = new ArrayList();
         ucellAddressName = new HashMap();
         ucellInfoAddress = new HashMap();
         ucellInfoTime = new HashMap();
-        toastView = ((LayoutInflater)getActivity().getSystemService("layout_inflater")).inflate(0x7f030020, null);
-        toastTextMsg = (TextView)toastView.findViewById(0x7f060066);
+        toastView = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.qapp_toast, null);
+        toastTextMsg = (TextView) toastView.findViewById(R.id.toastMsg);
         FragmentTransaction fragmenttransaction = getChildFragmentManager().beginTransaction();
         mapFragment = getChildFragmentManager().findFragmentByTag("myMap");
-        if (mapFragment == null)
-        {
+        if (mapFragment == null) {
             mapFragment = new MyMapFragment();
         }
-        fragmenttransaction.replace(0x7f060057, mapFragment, "myMap");
+        fragmenttransaction.replace(R.id.mapHolder, mapFragment, "myMap");
         fragmenttransaction.commit();
         getChildFragmentManager().executePendingTransactions();
         locationAsyncTask = new LocationAsyncTask(getActivity());
     }
 
-    public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle)
-    {
-        View view = layoutinflater.inflate(0x7f03001a, null);
-        address = (TextView)view.findViewById(0x7f060059);
-        workingTime = (TextView)view.findViewById(0x7f06005a);
-        currentLocationTv = (TextView)view.findViewById(0x7f060058);
+    public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle) {
+        View view = layoutinflater.inflate(R.layout.map_view, null);
+        address = (TextView) view.findViewById(R.id.address);
+        workingTime = (TextView) view.findViewById(R.id.workingTime);
+        currentLocationTv = (TextView) view.findViewById(R.id.currentLocation);
         blinkText(currentLocationTv);
         locationAsyncTask.setLocationTextView(address);
-        SpannableString spannablestring = new SpannableString(getResources().getString(0x7f090085));
+        SpannableString spannablestring = new SpannableString(getResources().getString(R.string.detectingLocation));
         spannablestring.setSpan(new StyleSpan(1), 0, spannablestring.length(), 0);
-        spannablestring.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(0x7f050031)), 0, spannablestring.length(), 33);
+        spannablestring.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.ucellColor)), 0, spannablestring.length(), 33);
         address.setText(spannablestring);
         address.setText(USpeedApplication.getPreferences().getLocation());
         return view;
     }
 
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
-        if (location == null)
-        {
-            map = ((MyMapFragment)mapFragment).getMap();
+        if (location == null) {
+            map = ((MyMapFragment) mapFragment).getMap();
             map.setMyLocationEnabled(true);
             latLngs.add(new LatLng(41.316977000000001D, 69.282214999999994D));
             latLngs.add(new LatLng(41.295479D, 69.264854D));
@@ -158,196 +157,164 @@ public class MapFragment extends BaseFragment
             ucellAddressName.put(Double.valueOf(41.279783000000002D), "Ucell-Chilonzor: ");
             ucellAddressName.put(Double.valueOf(41.327820000000003D), "Ucell: ");
             ucellAddressName.put(Double.valueOf(41.324998000000001D), "Ucell: ");
-            for (int i = 0; i < 7; i++)
-            {
+            for (int i = 0; i < 7; i++) {
                 options = new MarkerOptions();
-                options.position((LatLng)latLngs.get(i));
-                options.icon(BitmapDescriptorFactory.fromResource(0x7f020090));
+                options.position((LatLng) latLngs.get(i));
+                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ucell_marker));
                 map.addMarker(options);
             }
 
-            com.google.android.gms.maps.CameraUpdate cameraupdate = CameraUpdateFactory.newLatLngZoom((LatLng)latLngs.get(0), 11F);
+            com.google.android.gms.maps.CameraUpdate cameraupdate = CameraUpdateFactory.newLatLngZoom((LatLng) latLngs.get(0), 11F);
             CameraUpdateFactory.zoomTo(15F);
             map.moveCamera(cameraupdate);
             map.setOnMarkerClickListener(new com.google.android.gms.maps.GoogleMap.OnMarkerClickListener() {
 
-                final MapFragment this$0;
-
-                public boolean onMarkerClick(Marker marker)
-                {
-                    if (ucellInfoTime.get(Double.valueOf(marker.getPosition().latitude)) != null && !((String)ucellInfoTime.get(Double.valueOf(marker.getPosition().latitude))).isEmpty())
-                    {
-                        address.setText((CharSequence)ucellInfoAddress.get(Double.valueOf(marker.getPosition().latitude)));
-                        String as[] = ((String)ucellInfoTime.get(Double.valueOf(marker.getPosition().latitude))).split(";");
-                        workingTime.setText((new StringBuilder()).append(getResources().getString(0x7f09006c)).append(": ").append(as[0]).append("\n").append(getResources().getString(0x7f090078)).append(": ").append(as[1]).toString());
-                        SpannableString spannablestring1 = new SpannableString((CharSequence)ucellAddressName.get(Double.valueOf(marker.getPosition().latitude)));
+                public boolean onMarkerClick(Marker marker) {
+                    if (ucellInfoTime.get(Double.valueOf(marker.getPosition().latitude)) != null && !((String) ucellInfoTime.get(Double.valueOf(marker.getPosition().latitude))).isEmpty()) {
+                        address.setText((CharSequence) ucellInfoAddress.get(Double.valueOf(marker.getPosition().latitude)));
+                        String as[] = ((String) ucellInfoTime.get(Double.valueOf(marker.getPosition().latitude))).split(";");
+                        workingTime.setText((new StringBuilder()).append(getResources().getString(R.string.monFri)).append(": ").append(as[0]).append("\n").append(getResources().getString(R.string.satSun)).append(": ").append(as[1]).toString());
+                        SpannableString spannablestring1 = new SpannableString((CharSequence) ucellAddressName.get(Double.valueOf(marker.getPosition().latitude)));
                         spannablestring1.setSpan(new StyleSpan(1), 0, spannablestring1.length(), 0);
-                        spannablestring1.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(0x7f050031)), 0, spannablestring1.length(), 51);
+                        spannablestring1.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.white)), 0, spannablestring1.length(), 51);
                         address.setText(spannablestring1);
-                        address.append((new StringBuilder()).append(" ").append((String)ucellInfoAddress.get(Double.valueOf(marker.getPosition().latitude))).toString());
+                        address.append((new StringBuilder()).append(" ").append((String) ucellInfoAddress.get(Double.valueOf(marker.getPosition().latitude))).toString());
                         return false;
                     }
-                    SpannableString spannablestring = new SpannableString(getResources().getString(0x7f090085));
+                    SpannableString spannablestring = new SpannableString(getResources().getString(R.string.yourLocation));
                     spannablestring.setSpan(new StyleSpan(1), 0, spannablestring.length(), 0);
-                    spannablestring.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(0x7f050031)), 0, spannablestring.length(), 51);
+                    spannablestring.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.white)), 0, spannablestring.length(), 51);
                     address.setText(spannablestring);
                     address.append("\n");
                     TextView textview = address;
                     String s;
-                    if (!TextUtils.isEmpty(locationAsyncTask.getAddress()))
-                    {
+//                   LocationAsyncTask locationAsyncTask1  = new LocationAsyncTask(getActivity());
+//                    locationAsyncTask1.execute();
+                    if (!TextUtils.isEmpty(locationAsyncTask.getAddress())) {
                         s = locationAsyncTask.getAddress();
-                    } else
-                    {
-                        s = getString(0x7f090055);
+                    } else {
+                        s = getString(R.string.detectingLocation);
                     }
                     textview.append(s);
-                    workingTime.setText((new StringBuilder()).append(getString(0x7f090068)).append(": ").append(marker.getPosition().latitude).append("\n").append(getString(0x7f09006a)).append(": ").append(marker.getPosition().latitude).toString());
+                    workingTime.setText((new StringBuilder()).append(getString(R.string.latitude)).append(": ").append(marker.getPosition().latitude).append("\n").append(getString(R.string.longitude)).append(": ").append(marker.getPosition().longitude).toString());
                     return false;
                 }
 
-            
-            {
-                this$0 = MapFragment.this;
-                super();
-            }
             });
-            locationManager = (LocationManager)getActivity().getSystemService("location");
-            (new LocationUtil(getActivity())).getLocation(getActivity(), new Listener() {
+//            locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+//            (new LocationUtil(getActivity())).getLocation(getActivity(), new Listener() {
+//
+//                public void onError(Exception exception) {
+//                    Toast toast = new Toast(getActivity());
+//                    currentLocationTv.setText(getString(R.string.errorLocation));
+//                    currentLocationTv.setVisibility(View.GONE);
+//                    hintText(currentLocationTv);
+//                    toastTextMsg.setText(getString(R.string.whatsWrong));
+//                    toast.setView(toastView);
+//                    toast.setDuration(Toast.LENGTH_SHORT);
+//                    toast.show();
+//                }
 
-                final MapFragment this$0;
+//                public void onSuccess(Location location1) {
+//                    location = location1;
+//            location=  map.getCameraPosition().target;
+//            locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+//            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+//            if(location == null)
+//                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//            if(location == null) {
+//                location = new Location(Context.LOCATION_SERVICE);
+//                location.setLatitude(map.getCameraPosition().target.latitude);
+//                location.setLongitude(map.getCameraPosition().target.longitude);
+//            }
+//            map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+//                @Override
+//                public boolean onMyLocationButtonClick() {
+//                    LatLng latlng = new LatLng(lt, lng);
+//                    MapsInitializer.initialize(getActivity());
+//                    options = new MarkerOptions();
+//                    options.position(latlng);
+//                    map.addMarker(options);
+////                    com.google.android.gms.maps.CameraUpdate cameraupdate1 = CameraUpdateFactory.newLatLngZoom(latlng, 11F);
+////                    CameraUpdateFactory.zoomTo(15F);
+//                    locationAsyncTask.setLatLong(latlng);
+////                    map.moveCamera(cameraupdate1);
+//                    if (locationAsyncTask.isCancelled()) {
+//                        locationAsyncTask.execute(new Void[0]);
+//                    }
+//                    currentLocationTv.setVisibility(View.GONE);
+//                    hintText(currentLocationTv);
+//                    SpannableString spannablestring = new SpannableString(getResources().getString(R.string.yourLocation));
+//                    spannablestring.setSpan(new StyleSpan(1), 0, spannablestring.length(), 0);
+//                    spannablestring.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.white)), 0, spannablestring.length(), 51);
+//                    address.setText(spannablestring);
+//                    address.append("\n");
+//                    TextView textview = address;
+//                    String s;
+//                    if (!TextUtils.isEmpty(locationAsyncTask.getAddress())) {
+//                        s = locationAsyncTask.getAddress();
+//                    } else {
+//                        s = getString(R.string.aboutApp);
+//                    }
+//                    textview.append(s);
+//                    workingTime.setText((new StringBuilder()).append(getString(R.string.latitude)).append(": ").append(lt).append("\n").append(getString(R.string.longitude)).append(": ").append(lng).toString());
+////                }
+//                    return false;
+//                }
+//            });
+            map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
 
-                public void onError(Exception exception)
-                {
-                    Toast toast = new Toast(getActivity());
-                    currentLocationTv.setText(getString(0x7f090056));
-                    currentLocationTv.setVisibility(0);
-                    hintText(currentLocationTv);
-                    toastTextMsg.setText(getString(0x7f090056));
-                    toast.setView(toastView);
-                    toast.setDuration(1);
-                    toast.show();
-                }
-
-                public void onSuccess(Location location1)
-                {
-                    location = location1;
-                    lt = location.getLatitude();
-                    lng = location.getLongitude();
-                    LatLng latlng = new LatLng(lt, lng);
-                    MapsInitializer.initialize(getActivity());
-                    options = new MarkerOptions();
-                    options.position(latlng);
-                    map.addMarker(options);
-                    com.google.android.gms.maps.CameraUpdate cameraupdate1 = CameraUpdateFactory.newLatLngZoom(latlng, 11F);
-                    CameraUpdateFactory.zoomTo(15F);
-                    locationAsyncTask.setLatLong(latlng);
-                    map.moveCamera(cameraupdate1);
-                    if (locationAsyncTask.isCancelled())
-                    {
-                        locationAsyncTask.execute(new Void[0]);
+                @Override
+                public void onMyLocationChange(Location location) {
+                    if (isFirst) {
+                        isFirst = false;
+                        lt = location.getLatitude();
+                        lng = location.getLongitude();
+                        LatLng latlng = new LatLng(lt, lng);
+                        MapsInitializer.initialize(getActivity());
+                        options = new MarkerOptions();
+                        options.position(latlng);
+                        map.addMarker(options);
+//                    com.google.android.gms.maps.CameraUpdate cameraupdate1 = CameraUpdateFactory.newLatLngZoom(latlng, 11F);
+//                    CameraUpdateFactory.zoomTo(15F);
+                        locationAsyncTask.setLatLong(latlng);
+//                    map.moveCamera(cameraupdate1);
+//                        if (locationAsyncTask.isCancelled()) {
+                            locationAsyncTask.execute();
+//                        }
+                        currentLocationTv.setVisibility(View.GONE);
+                        hintText(currentLocationTv);
+                        SpannableString spannablestring = new SpannableString(getResources().getString(R.string.yourLocation));
+                        spannablestring.setSpan(new StyleSpan(1), 0, spannablestring.length(), 0);
+                        spannablestring.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.white)), 0, spannablestring.length(), 51);
+                        address.setText(spannablestring);
+                        address.append("\n");
+                        TextView textview = address;
+                        String s;
+                        if (!TextUtils.isEmpty(locationAsyncTask.getAddress())) {
+                            s = locationAsyncTask.getAddress();
+                        } else {
+                            s = getString(R.string.detectingLocation);
+                        }
+                        textview.append(s);
+                        workingTime.setText((new StringBuilder()).append(getString(R.string.latitude)).append(": ").append(lt).append("\n").append(getString(R.string.longitude)).append(": ").append(lng).toString());
+//                }
                     }
-                    currentLocationTv.setVisibility(8);
-                    currentLocationTv.setVisibility(4);
-                    hintText(currentLocationTv);
-                    SpannableString spannablestring = new SpannableString(getResources().getString(0x7f090085));
-                    spannablestring.setSpan(new StyleSpan(1), 0, spannablestring.length(), 0);
-                    spannablestring.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(0x7f05001f)), 0, spannablestring.length(), 51);
-                    address.setText(spannablestring);
-                    address.append("\n");
-                    TextView textview = address;
-                    String s;
-                    if (!TextUtils.isEmpty(locationAsyncTask.getAddress()))
-                    {
-                        s = locationAsyncTask.getAddress();
-                    } else
-                    {
-                        s = getString(0x7f090055);
-                    }
-                    textview.append(s);
-                    workingTime.setText((new StringBuilder()).append(getString(0x7f090068)).append(": ").append(lt).append("\n").append(getString(0x7f09006a)).append(": ").append(lng).toString());
                 }
-
-                public volatile void onSuccess(Object obj)
-                {
-                    onSuccess((Location)obj);
-                }
-
-            
-            {
-                this$0 = MapFragment.this;
-                super();
-            }
             });
         }
     }
 
-    public void onStart()
-    {
+    public void onStart() {
         super.onStart();
     }
 
-    public void onStop()
-    {
+    public void onStop() {
         super.onStop();
     }
 
-    public void onViewCreated(View view, Bundle bundle)
-    {
+    public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-    static Location access$602(MapFragment mapfragment, Location location1)
-    {
-        mapfragment.location = location1;
-        return location1;
-    }
-
-*/
-
-
-
-/*
-    static double access$702(MapFragment mapfragment, double d)
-    {
-        mapfragment.lt = d;
-        return d;
-    }
-
-*/
-
-
-
-/*
-    static double access$802(MapFragment mapfragment, double d)
-    {
-        mapfragment.lng = d;
-        return d;
-    }
-
-*/
-
-
-
-/*
-    static MarkerOptions access$902(MapFragment mapfragment, MarkerOptions markeroptions)
-    {
-        mapfragment.options = markeroptions;
-        return markeroptions;
-    }
-
-*/
 }

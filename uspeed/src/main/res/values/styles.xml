@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="fragment_text" parent="android:TextAppearance.DeviceDefault"></style>
-    <style name="MenuDrawer.Widget.Title"/>
-    <style name="MenuDrawer.Widget.Category"></style>
+    <style name="MenuDrawer.Widget.Category"/>
+    <style name="MenuDrawer.Widget.Title">
+        <item name="android:textSize">18dp</item>
+        <item name="android:gravity">center_vertical|left</item>
+    </style>
     <style name="MenuDrawer.Widget">k</style>
     <style name="MenuDrawer">,</style>
+
+    <style name="DialogPopUp" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/transparent</item>
+
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="UspeedTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/UspeedActionBar</item>
+        <item name="android:homeAsUpIndicator">@android:color/transparent</item>
+    </style>
+
+    <style name="UspeedActionBar" parent="android:Widget.ActionBar">
+        <item name="android:icon">@drawable/menu_icon_selector</item>
+        <item name="android:homeAsUpIndicator">@android:color/transparent</item>
+    </style>
+
 </resources>

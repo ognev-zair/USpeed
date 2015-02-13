@@ -1,29 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:weightSum="5.0"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:layout_width="fill_parent" android:layout_height="0.0dip" android:src="@drawable/login_background" android:scaleType="centerCrop" android:layout_weight="2.0" />
-    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="0.0dip" android:weightSum="8.0" android:layout_weight="3.0">
-        <View android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" />
-        <LinearLayout android:gravity="left" android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="6.0">
-            <TextView android:textColor="@color/darkGrey" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="@string/ChooseCode" />
-            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:weightSum="8.0">
-                <LinearLayout android:gravity="left" android:id="@id/leftId" android:descendantFocusability="blocksDescendants" android:layout_width="wrap_content" android:layout_height="wrap_content">
-                    <RadioButton android:enabled="false" android:id="@id/radioBtn1" android:focusable="false" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:button="@drawable/radio_btn_background" />
-                    <TextView android:textColor="@color/ucellColor" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:text="998 93" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:weightSum="5.0">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="2.0"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login_background"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="3.0"
+        android:orientation="horizontal"
+        android:weightSum="8.0">
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"/>
+
+        <LinearLayout
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="6.0"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20.0dip"
+                android:text="@string/ChooseCode"
+                android:textColor="@color/darkGrey"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:orientation="horizontal"
+                android:weightSum="8.0">
+
+                <LinearLayout
+                    android:id="@id/leftId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="blocksDescendants"
+                    android:gravity="left">
+
+                    <RadioButton
+                        android:id="@id/radioBtn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/radio_btn_background"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:enabled="false"
+                        android:focusable="false"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8.0dip"
+                        android:text="998 93"
+                        android:textColor="@color/ucellColor"/>
                 </LinearLayout>
-                <View android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_weight="2.0" />
-                <LinearLayout android:gravity="center_horizontal" android:id="@id/rightId" android:descendantFocusability="blocksDescendants" android:layout_width="wrap_content" android:layout_height="wrap_content">
-                    <RadioButton android:enabled="false" android:id="@id/radioBtn2" android:focusable="false" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@drawable/radio_btn_background" />
-                    <TextView android:textColor="@color/ucellColor" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:text="998 94" />
+
+                <View
+                    android:layout_width="0.0dip"
+                    android:layout_height="0.0dip"
+                    android:layout_weight="2.0"/>
+
+                <LinearLayout
+                    android:id="@id/rightId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="blocksDescendants"
+                    android:gravity="center_horizontal">
+
+                    <RadioButton
+                        android:id="@id/radioBtn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/radio_btn_background"
+                        android:clickable="false"
+                        android:enabled="false"
+                        android:focusable="false"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8.0dip"
+                        android:text="998 94"
+                        android:textColor="@color/ucellColor"/>
                 </LinearLayout>
-                <View android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_weight="1.0" />
+
+                <View
+                    android:layout_width="0.0dip"
+                    android:layout_height="0.0dip"
+                    android:layout_weight="1.0"/>
             </LinearLayout>
-            <TextView android:textColor="@color/darkGrey" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="@string/EnterNumber" />
-            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                <EditText android:id="@id/phoneNumber" android:background="@drawable/edit_underline" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxLength="7" android:inputType="numberDecimal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20.0dip"
+                android:text="@string/EnterNumber"
+                android:textColor="@color/darkGrey"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@id/phoneNumber"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_underline"
+                    android:inputType="numberDecimal"
+                    android:maxLength="7"/>
             </LinearLayout>
-            <Button android:textStyle="bold" android:textColor="@color/white" android:layout_gravity="center" android:id="@id/enter" android:background="@drawable/enter_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="30.0dip" android:text="@string/enter" />
+
+            <Button
+                android:id="@id/enter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30.0dip"
+                android:background="@drawable/enter_btn"
+                android:text="@string/enter"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
         </LinearLayout>
-        <View android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"/>
     </LinearLayout>
 </LinearLayout>

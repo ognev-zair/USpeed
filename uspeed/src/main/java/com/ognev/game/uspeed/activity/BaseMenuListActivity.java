@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.ognev.game.uspeed.R;
 import com.ognev.game.uspeed.fragment.Item;
 import com.ognev.game.uspeed.fragment.MenuAdapter;
 
@@ -37,22 +39,13 @@ public abstract class BaseMenuListActivity extends FragmentActivity
     {
         mActivePosition = 0;
         mItemClickListener = new android.widget.AdapterView.OnItemClickListener() {
-
-            final BaseMenuListActivity this$0;
-
-            public void onItemClick(AdapterView adapterview, View view, int i, long l)
-            {
+            public void onItemClick(AdapterView adapterview, View view, int i, long l) {
                 mActivePosition = i;
                 mMenuDrawer.setActiveView(view, i);
                 mAdapter.setActivePosition(i);
                 onMenuItemClicked(i, (Item)mAdapter.getItem(i));
             }
 
-            
-            {
-                this$0 = BaseMenuListActivity.this;
-                super();
-            }
         };
     }
 
@@ -75,38 +68,28 @@ public abstract class BaseMenuListActivity extends FragmentActivity
         super.onCreate(bundle);
         requestWindowFeature(5);
         mMenuDrawer = MenuDrawer.attach(this, net.simonvt.menudrawer.MenuDrawer.Type.BEHIND, getDrawerPosition(), getDragMode());
-        View view = LayoutInflater.from(this).inflate(0x7f03001d, null, false);
-        mMenuDrawer.setDropShadowColor(getResources().getColor(0x7f050019));
-        mMenuDrawer.setBackgroundColor(getResources().getColor(0x7f050019));
+        View view = LayoutInflater.from(this).inflate(R.layout.menu_view, null, false);
+        mMenuDrawer.setDropShadowColor(getResources().getColor(R.color.appBackground));
+        mMenuDrawer.setBackgroundColor(getResources().getColor(R.color.ucellColor));
         mMenuDrawer.setDropShadowEnabled(true);
-        mMenuDrawer.setDrawingCacheBackgroundColor(getResources().getColor(0x7f050019));
         ArrayList arraylist = new ArrayList();
-        arraylist.add(new Item(getResources().getString(0x7f090073), 0x7f02006d));
-        arraylist.add(new Item(getResources().getString(0x7f09007a), 0x7f020073));
-        arraylist.add(new Item(getResources().getString(0x7f09007c), 0x7f02006f));
-        arraylist.add(new Item(getResources().getString(0x7f09006b), 0x7f02006b));
-        arraylist.add(new Item(getResources().getString(0x7f090079), 0x7f020071));
-        mList = (ListView)view.findViewById(0x7f06005c);
+        arraylist.add(new Item(getResources().getString(R.string.profile), R.drawable.menu_profile_ic));
+        arraylist.add(new Item(getResources().getString(R.string.speedometer), R.drawable.menu_speedometer_ic));
+        arraylist.add(new Item(getResources().getString(R.string.reports), R.drawable.menu_reports_ic));
+        arraylist.add(new Item(getResources().getString(R.string.map), R.drawable.menu_map_ic));
+        arraylist.add(new Item(getResources().getString(R.string.settings), R.drawable.menu_settings_ic));
+        mList = (ListView)view.findViewById(R.id.list);
         new TypedValue();
         mAdapter = new MenuAdapter(this, arraylist);
         mAdapter.setListener(this);
         mAdapter.setActivePosition(mActivePosition);
         mList.setAdapter(mAdapter);
         mList.setOnItemClickListener(mItemClickListener);
-        Display display = ((WindowManager)getApplicationContext().getSystemService("window")).getDefaultDisplay();
-        mMenuDrawer.setMenuSize((int)(0.69999999999999996D * (double)display.getWidth()));
+        Display display = ((WindowManager)getApplicationContext().getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+        mMenuDrawer.setMenuSize((int)(0.7 * (double)display.getWidth()));
         mMenuDrawer.setMenuView(view);
     }
 
     protected abstract void onMenuItemClicked(int i, Item item);
 
-
-/*
-    static int access$002(BaseMenuListActivity basemenulistactivity, int i)
-    {
-        basemenulistactivity.mActivePosition = i;
-        return i;
-    }
-
-*/
 }

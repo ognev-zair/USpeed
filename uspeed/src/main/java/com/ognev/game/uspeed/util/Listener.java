@@ -8,7 +8,7 @@ package com.ognev.game.uspeed.util;
 public interface Listener
 {
 
-    public abstract void onError(Exception exception);
-
     public abstract void onSuccess(Object obj);
+
+    public abstract void onError(Exception exception);
 }

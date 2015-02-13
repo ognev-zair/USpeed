@@ -7,21 +7,19 @@ package com.ognev.game.uspeed.ormlite.dao;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.support.ConnectionSource;
+import com.ognev.game.uspeed.ormlite.model.User;
 
 import java.sql.SQLException;
 
-public class UserDao extends BaseDaoImpl
-{
+public class UserDao extends BaseDaoImpl {
 
     public UserDao(ConnectionSource connectionsource)
-        throws SQLException
-    {
-        super(connectionsource, com/ognev/game/uspeed/ormlite/model/User);
+            throws SQLException {
+        super(connectionsource, User.class);
     }
 
     public void changeSystemLanguage(boolean flag)
-        throws SQLException
-    {
+            throws SQLException {
         UpdateBuilder updatebuilder = updateBuilder();
         updatebuilder.where().eq("id", "me");
         updatebuilder.updateColumnValue("systemLanguage", Boolean.valueOf(flag));

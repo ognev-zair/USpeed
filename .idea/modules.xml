@@ -3,9 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/USpeed.iml" filepath="$PROJECT_DIR$/USpeed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/circularimageview/circularimageview.iml" filepath="$PROJECT_DIR$/modules/circularimageview/circularimageview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/facebook/facebook.iml" filepath="$PROJECT_DIR$/modules/facebook/facebook.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/menudrawer/menudrawer.iml" filepath="$PROJECT_DIR$/modules/menudrawer/menudrawer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modules/modules.iml" filepath="$PROJECT_DIR$/modules/modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/uspeed/uspeed.iml" filepath="$PROJECT_DIR$/uspeed/uspeed.iml" />
     </modules>
   </component>
 </project>
+

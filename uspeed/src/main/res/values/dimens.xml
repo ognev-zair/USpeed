@@ -30,5 +30,5 @@
     <dimen name="com_facebook_tooltip_horizontal_padding">10.0dip</dimen>
     <dimen name="com_facebook_usersettingsfragment_profile_picture_height">64.0dip</dimen>
     <dimen name="com_facebook_usersettingsfragment_profile_picture_width">64.0dip</dimen>
-    <dimen name="mapTextSize">23</dimen>
+    <dimen name="mapTextSize">23sp</dimen>
 </resources>
