@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/ognev/Google%20Диск/Projects/USpeed/modules/menudrawer/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/media/C84AB31E4AB30868/Users/ognev/Google%20Диск/Projects/USpeed/modules/menudrawer/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="menuDrawerStyle"/>
     <color name="md__defaultBackground">#FF555555</color>
